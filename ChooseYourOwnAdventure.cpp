@@ -14,7 +14,18 @@ class Game {
             string input;
             getline(cin, input);
 
-            return stoi(input); //convert 'input' to int and then return it
+            try {
+                int num = stoi(input);
+                if (num > 0 && num <= numChoices) {
+                    return num;
+                }
+                else {
+                    cout << "Please enter a vaild value. The value\'s type has to be \'int\' and it should be between 1 and " + to_string(numChoices) + "." << endl;
+                }
+            }
+            catch (invalid_argument) {
+                cout << "Please enter a vaild value. The value\'s type has to be \'int\' and it should be between 1 and " + to_string(numChoices) + "." << endl;
+            }
         }
 };
 int main() {
