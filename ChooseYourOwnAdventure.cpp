@@ -19,26 +19,22 @@ class Game {
 
             cout << "Find a dragon" << endl;
             cout << "1. Look for dragon eggs" << endl;
-            cout << "2. Ask directions" << endl;
-            cout << "3. Go get a car" << endl;
-            cout << "4. Go to the highway" << endl;
-            cout << "5. Search on the internet (google, mintwiki, etc.)" << endl;
+            cout << "2. Go get a car" << endl;
+            cout << "3. Go to the highway" << endl;
+            cout << "4. Search on the internet (google, mintwiki, etc.)" << endl;
             choice = getInput(5);
 
             if (choice == 1) {
-                //dragonEggs();
+                dragonEggs();
             }
             else if (choice == 2) {
-                //askDirections("dragon");
+                getCar();
             }
             else if (choice == 3) {
-                //getCar();
+                gotoHighway();
             }
             else if (choice == 4) {
-                //gotoHighway();
-            }
-            else if (choice == 5) {
-                //searchInternet("dragon");
+                searchInternet("dragon");
             }
 
             playAgain();
@@ -83,8 +79,81 @@ class Game {
                 cout << "Invaild Vaule. Quit Game." << endl;
             }
         }
+        
+        void dragonEggs() {
+            cout << "I found some dragon eggs! ";
+            // add later
+        }
+
+        void getCar() {
+            cout << "I found a car in the road but I have no key to take the car." << endl;
+            cout << "1. Find the key" << endl;
+            cout << "2. Find some information in the internet" << endl;
+        }
+
+        void gotoHighway() {
+            cout << "I found some dragon\'s footprints!" << endl;
+            cout << "1. Follow footprints" << endl;
+            cout << "2. Search more information in the internet" << endl;
+
+            choice = getInput(2);
+            if (choice == 1) {
+                dragonEggs();
+            }
+            else if (choice == 2) {
+                searchInternet("dragon_footprint");
+            }
+        }
+
+        void searchInternet(string keyword) {
+            fstream fstream;
+            cout << "Where are you going to search \'" + keyword + "\'?" << endl;
+            cout << "1. Google" << endl;
+            cout << "2. Mintwiki" << endl;
+            choice = getInput(2);
+            if (choice == 1) {
+                fstream.open("https://www.google.com/search?q=" + keyword);
+            }
+            else if (choice == 2) {
+                fstream.open("https://mint.wikive.cc/search/" + keyword);
+            }
+
+            if (keyword == "dragon") {
+                afterSearchdragon();
+            }
+            else if (keyword == "dragon_footprint") {
+                afterSearchdragonfootprint();
+            }
+        }
+        void afterSearchdragon() {
+            fstream fstream;
+            cout << "After you find some informations, you can look for dragon eggs or do another task." << endl;
+            cout << "1. look for dragon eggs" << endl;
+            cout << "2. Go get a car" << endl;
+            cout << "3. Go to the highway" << endl;
+            choice = getInput(3);
+            fstream.close();
+            if (choice == 1) {
+                dragonEggs();
+            }
+            else if (choice == 2) {
+                getCar();
+            }
+            else if (choice == 3) {
+                gotoHighway();
+            }
+        }
+        void afterSearchdragonfootprint() {
+            string temp;
+            cout << "After you receive some information, you can hit enter." << endl;
+            getline(cin, temp);
+            fstream fstream;
+            fstream.close();
+            cout << "I received some information about footprints, so I am going to follow that footprints!" << endl;
+            dragonEggs();
+        }
 };
 int main() {
-    
+    Game game1;
     return 0;
 }
