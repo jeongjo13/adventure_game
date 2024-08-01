@@ -87,7 +87,7 @@ class Game {
             exit(1);
         }
         void dragonEggs() {
-            cout << "I found some dragon eggs! ";
+            cout << "I found some dragon eggs! " << endl;
             cout << "1. Look for dragons" << endl;
             cout << "2. Steal the egg" << endl;
             cout << "3. Stop adventure (Quit Game)" << endl;
@@ -97,7 +97,6 @@ class Game {
                 lookfordragons();
             }
             else if (choice == 2) {
-                notDeveloped();
                 steal("dragonegg");
             }
             else if (choice == 3) {
