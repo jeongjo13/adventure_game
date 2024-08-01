@@ -1,3 +1,4 @@
+//include libraries
 #include <iostream>
 #include <string>
 using namespace std;
@@ -15,7 +16,7 @@ class Game {
             getline(cin, input);
 
             try {
-                int num = stoi(input);
+                int num = stoi(input); //convert 'input' to an int value and save it to 'num'
                 if (num > 0 && num <= numChoices) {
                     return num;
                 }
