@@ -84,7 +84,7 @@ class Game {
         
         void notDeveloped() {
             cout << "This fuction is not developed yet. Please try again later." << endl;
-            exit(0);
+            exit(1);
         }
         void dragonEggs() {
             cout << "I found some dragon eggs! ";
@@ -94,16 +94,51 @@ class Game {
             choice = getInput(3);
 
             if (choice == 1) {
-                notDeveloped();
-                //lookfordragons();
+                lookfordragons();
             }
             else if (choice == 2) {
                 notDeveloped();
-                //steal("dragonegg");
+                steal("dragonegg");
             }
             else if (choice == 3) {
                 cout << "Stop adventure" << endl;
                 exit(0);
+            }
+        }
+
+        void lookfordragons() {
+            cout << "No dragons around here. Maybe I can look for the other places." << endl;
+            cout << "1. Walk around and look other places" << endl;
+            cout << "2. Stop adventure" << endl;
+            choice = getInput(2);
+
+            if (choice == 1) {
+                notDeveloped();
+            }
+            else if (choice == 2) {
+                cout << "Stop Adventure" << endl;
+                exit(0);
+            }
+        }
+
+        void steal(string whatSteal) {
+            if (whatSteal == "dragonegg") {
+                cout << "I stealed the dragon\'s egg, but dragon is chasing me!" << endl;
+                cout << "1. run away" << endl;
+                cout << "2. stop adventure" << endl;
+
+                choice = getInput(2);
+
+                if (choice == 1) {
+                    cout << "Dragon is faster than me! Soon, dragon will eat me!" << endl;
+                    cout << "I got eaten!" << endl;
+                    cout << "----------\n[Info] You died! Maybe you can start over: \n----------" << endl;
+                    playAgain();
+                }
+                else if (choice == 2) {
+                    cout << "stop adventure" << endl;
+                    exit(0);
+                }
             }
         }
 
