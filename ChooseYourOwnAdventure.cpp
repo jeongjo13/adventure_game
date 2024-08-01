@@ -45,7 +45,7 @@ class Game {
         int getInput(int numChoices) {
             while (true) {
                 string input;
-                cout << "Select one option: ";
+                cout << "Select one option from above: ";
                 getline(cin, input);
 
                 try {
@@ -54,11 +54,11 @@ class Game {
                         return num;
                     }
                     else {
-                        cout << "Please enter a vaild value. The value\'s type has to be \'int\' and it should be between 1 and " + to_string(numChoices) + "." << endl;
+                        cout << "Invaild Value. The value\'s type has to be \'int\' and it should be between 1 and " + to_string(numChoices) + ". Try again: " << endl;
                     }
                 }
                 catch (invalid_argument) {
-                    cout << "Please enter a vaild value. The value\'s type has to be \'int\' and it should be between 1 and " + to_string(numChoices) + "." << endl;
+                    cout << "Invaild Value. The value\'s type has to be \'int\' and it should be between 1 and " + to_string(numChoices) + ". Try again: " << endl;
                 }
             }
         }
@@ -74,8 +74,11 @@ class Game {
                 cout << "Play Again: " << endl;
                 new Game();
             }
+            else if (choice == 2) {
+                cout << "Quit Game." << endl;
+            }
             else {
-                cout << "Quit Game" << endl;
+                cout << "Invaild Vaule. Quit Game." << endl;
             }
         }
 };
