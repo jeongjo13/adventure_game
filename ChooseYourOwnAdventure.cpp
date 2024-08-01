@@ -3,14 +3,14 @@
 using namespace std;
 
 class Game {
-    private:
+    private: //private variables
 
     public:
         Game() {
 
         }
-    private:
-        
+    private: //private methods
+
 };
 int main() {
     
