@@ -66,7 +66,7 @@ class Game {
             cout << "Would you like to play this game again?" << endl;
             cout << "1. Yes!" << endl;
             cout << "2. No." << endl;
-            choice = getInput(2);
+            choice = getInput(3);
 
             if (choice == 1) {
                 cout << "Play Again: " << endl;
@@ -74,21 +74,42 @@ class Game {
             }
             else if (choice == 2) {
                 cout << "Quit Game." << endl;
+                exit(0);
             }
             else {
                 cout << "Invaild Vaule. Quit Game." << endl;
+                exit(1);
             }
         }
         
+        void notDeveloped() {
+            cout << "This fuction is not developed yet. Please try again later." << endl;
+            exit(0);
+        }
         void dragonEggs() {
             cout << "I found some dragon eggs! ";
-            // add later
+            cout << "1. Look for dragons" << endl;
+            cout << "2. Steal the egg" << endl;
+            cout << "3. Stop adventure (Quit Game)" << endl;
+            choice = getInput(3);
+
+            if (choice == 1) {
+                notDeveloped();
+                //lookfordragons();
+            }
+            else if (choice == 2) {
+                notDeveloped();
+                //steal("dragonegg");
+            }
+            else if (choice == 3) {
+                cout << "Stop adventure" << endl;
+                exit(0);
+            }
         }
 
         void getCar() {
-            cout << "I found a car in the road but I have no key to take the car." << endl;
-            cout << "1. Find the key" << endl;
-            cout << "2. Find some information in the internet" << endl;
+            cout << "I found a car in the road but I have no key to take the car. Let\'s just find some dragon eggs." << endl;
+            dragonEggs();
         }
 
         void gotoHighway() {
