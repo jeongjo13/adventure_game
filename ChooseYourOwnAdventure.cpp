@@ -1,7 +1,7 @@
 //include libraries
 #include <iostream>
 #include <string>
-#include <fstream>
+#include <cstdlib>
 using namespace std;
 
 class Game {
@@ -106,16 +106,15 @@ class Game {
         }
 
         void searchInternet(string keyword) {
-            fstream fstream;
             cout << "Where are you going to search \'" + keyword + "\'?" << endl;
             cout << "1. Google" << endl;
             cout << "2. Mintwiki" << endl;
             choice = getInput(2);
             if (choice == 1) {
-                fstream.open("https://www.google.com/search?q=" + keyword);
+                cout << "Open \'https://google.com/search?q=" + keyword + "\'." << endl;
             }
             else if (choice == 2) {
-                fstream.open("https://mint.wikive.cc/search/" + keyword);
+                cout << "Open \'https://mint.wikive.cc/search/" + keyword + "\'." << endl;
             }
 
             if (keyword == "dragon") {
@@ -126,13 +125,11 @@ class Game {
             }
         }
         void afterSearchdragon() {
-            fstream fstream;
             cout << "After you find some informations, you can look for dragon eggs or do another task." << endl;
             cout << "1. look for dragon eggs" << endl;
             cout << "2. Go get a car" << endl;
             cout << "3. Go to the highway" << endl;
             choice = getInput(3);
-            fstream.close();
             if (choice == 1) {
                 dragonEggs();
             }
@@ -147,8 +144,6 @@ class Game {
             string temp;
             cout << "After you receive some information, you can hit enter." << endl;
             getline(cin, temp);
-            fstream fstream;
-            fstream.close();
             cout << "I received some information about footprints, so I am going to follow that footprints!" << endl;
             dragonEggs();
         }
