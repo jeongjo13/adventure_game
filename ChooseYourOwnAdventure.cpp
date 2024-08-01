@@ -40,6 +40,8 @@ class Game {
             else if (choice == 5) {
                 //searchInternet("dragon");
             }
+
+            playAgain();
         }
     private: //private methods
         int getInput(int numChoices) {
