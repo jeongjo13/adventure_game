@@ -4,11 +4,13 @@ using namespace std;
 
 class Game {
     private:
+
     public:
         Game() {
 
         }
     private:
+        
 };
 int main() {
     
