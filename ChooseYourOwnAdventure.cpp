@@ -232,7 +232,7 @@ class Game {
                     stopAdventure();
                 }
                 else {
-                    error_message("Vaule \'choice\' should be 1~2 but it is not.")
+                    error_message("Vaule \'choice\' should be 1~2 but it is not.");
                 }
             }
         }
