@@ -95,6 +95,7 @@ class Game {
         void error_message(string error_reason) {
             cout << "Something went wrong. If this error keeps happening, you can include the information below and make an issue at https://github.com/jeongjo13/adventure_game/issues/new." << endl;
             cout << error_reason << endl;
+            exit(1);
         }
         
         void dragonEggs() {
