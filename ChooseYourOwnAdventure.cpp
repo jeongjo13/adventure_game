@@ -314,7 +314,11 @@ class Game {
                 if (havecarkey == true) {
                     cout << "Heading home..." << endl;
                     delay(3);
-                    notDeveloped();
+                    cout << "I got to home sucessfully! This is the end of the Adventure!" << endl;
+                    delay(2);
+                    cout << "----------" << endl;
+                    cout << "[Info] You won the game! Thanks for playing this game." << endl;
+                    cout << "----------" << endl;
                 }
                 else {
                     cout << "I do not have car key. I should find it." << endl;
