@@ -309,6 +309,12 @@ class Game {
             }
         }
 
+        void level2() {
+            cout << "Let\'s start level 2!" << endl;
+            delay(1);
+            notDeveloped();
+        }
+
         void useCar() {
             if (havecar == true) {
                 if (havecarkey == true) {
@@ -317,8 +323,22 @@ class Game {
                     cout << "I got to home sucessfully! This is the end of the Adventure!" << endl;
                     delay(2);
                     cout << "----------" << endl;
-                    cout << "[Info] You won the game! Thanks for playing this game." << endl;
+                    cout << "[Info] You won the game! Thanks for playing this game. Do you want to continue to the next level?" << endl;
                     cout << "----------" << endl;
+                    cout << "1. Go to next level (level 2)" << endl;
+                    cout << "2. Quit game" << endl;
+                    
+                    choice = getInput(2);
+
+                    if (choice == 1) {
+                        cout << "----------\nStarting level 2" << endl;
+                        delay(2);
+                        level2();
+                    }
+                    if (choice == 2) {
+                        cout << "Quit Game" << endl;
+                        exit(0);
+                    }
                 }
                 else {
                     cout << "I do not have car key. I should find it." << endl;
