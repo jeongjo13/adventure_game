@@ -218,7 +218,22 @@ class Game {
         
         void givewater(string towho) {
             if (towho == "dragon") {
-                notDeveloped();
+                cout << "I don\'t have water. I think I could look around for water." << endl;
+                cout << "1. Look for water" << endl;
+                cout << "2. Just stop adventure" << endl;
+
+                choice = getInput(2);
+
+                if (choice == 1) {
+                    notDeveloped();
+                    //lookforwater();
+                }
+                else if (choice == 2) {
+                    stopAdventure();
+                }
+                else {
+                    error_message("Vaule \'choice\' should be 1~2 but it is not.")
+                }
             }
         }
 
