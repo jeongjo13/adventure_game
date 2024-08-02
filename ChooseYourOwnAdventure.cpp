@@ -243,7 +243,29 @@ class Game {
                     }
                 }
                 else if (havewater == true) {
-                    notDeveloped();
+                    cout << "giving water to the dragon. Please wait..." << endl;
+                    for (int j = 0; j <= 100; j++) {
+                        cout << j + "% complete" << endl;
+                        delay(1);
+                    }
+                    cout << "I\'m done giving some water. Let me have some water." << endl;
+                    delay(3);
+                    cout << "----------" << endl;
+                    cout << "I\'m done drinking some water. What should I do know?" << endl;
+                    cout << "1. Go home" << endl;
+                    cout << "2. Stop adventure" << endl;
+
+                    choice = getInput(2);
+
+                    if (choice == 1) {
+                        notDeveloped();
+                    }
+                    else if (choice == 2) {
+                        stopAdventure();
+                    }
+                    else {
+                        error_message("Vaule \'choice\' should be 1~2 but it is not.");
+                    }
                 }
             }
         }
