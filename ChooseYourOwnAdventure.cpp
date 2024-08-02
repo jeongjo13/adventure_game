@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <thread>
 using namespace std;
 
 class Game {
@@ -59,6 +60,10 @@ class Game {
                     cout << "Invaild Value. The value\'s type has to be \'int\' and it should be between 1 and " + to_string(numChoices) + ". Try again: " << endl;
                 }
             }
+        }
+
+        void delay(int dtime) {
+            this_thread::sleep_for(chrono::seconds(dtime));
         }
 
         void playAgain() {
@@ -226,8 +231,7 @@ class Game {
                 choice = getInput(2);
 
                 if (choice == 1) {
-                    notDeveloped();
-                    //lookforwater();
+                    lookforwater();
                 }
                 else if (choice == 2) {
                     stopAdventure();
@@ -236,6 +240,10 @@ class Game {
                     error_message("Vaule \'choice\' should be 1~2 but it is not.");
                 }
             }
+        }
+
+        void lookforwater() {
+            notDeveloped();
         }
 
         void steal(string whatSteal) {
@@ -248,7 +256,9 @@ class Game {
 
                 if (choice == 1) {
                     cout << "Dragon is faster than me! Soon, dragon will eat me!" << endl;
+                    delay(2);
                     cout << "I got eaten!" << endl;
+                    delay(1);
                     cout << "----------\n[Info] You died! Maybe you can start over: \n----------" << endl;
                     playAgain();
                 }
