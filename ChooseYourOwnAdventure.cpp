@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <thread>
 using namespace std;
 
 class Game {
@@ -61,6 +62,10 @@ class Game {
             }
         }
 
+        void delay(int dtime) {
+            this_thread::sleep_for(chrono::seconds(dtime));
+        }
+
         void playAgain() {
             cout << endl;
             cout << "Would you like to play this game again?" << endl;
@@ -95,6 +100,7 @@ class Game {
         void error_message(string error_reason) {
             cout << "Something went wrong. If this error keeps happening, you can include the information below and make an issue at https://github.com/jeongjo13/adventure_game/issues/new." << endl;
             cout << error_reason << endl;
+            exit(1);
         }
         
         void dragonEggs() {
@@ -225,8 +231,7 @@ class Game {
                 choice = getInput(2);
 
                 if (choice == 1) {
-                    notDeveloped();
-                    //lookforwater();
+                    lookforwater();
                 }
                 else if (choice == 2) {
                     stopAdventure();
@@ -235,6 +240,10 @@ class Game {
                     error_message("Vaule \'choice\' should be 1~2 but it is not.");
                 }
             }
+        }
+
+        void lookforwater() {
+            notDeveloped();
         }
 
         void steal(string whatSteal) {
@@ -247,7 +256,9 @@ class Game {
 
                 if (choice == 1) {
                     cout << "Dragon is faster than me! Soon, dragon will eat me!" << endl;
+                    delay(2);
                     cout << "I got eaten!" << endl;
+                    delay(1);
                     cout << "----------\n[Info] You died! Maybe you can start over: \n----------" << endl;
                     playAgain();
                 }
