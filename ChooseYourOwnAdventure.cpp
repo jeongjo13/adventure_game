@@ -358,7 +358,10 @@ class Game {
             }
         }
         void afterSearchdragon() {
-            cout << "After you find some informations, you can look for dragon eggs or do another task." << endl;
+            cout << "After you find some informations, you can hit Enter." << endl;
+            string temp;
+            getline(cin, temp);
+            cout << "Now that you find some informations, you can look for dragon eggs or do another task." << endl;
             cout << "1. look for dragon eggs" << endl;
             cout << "2. Go get a car" << endl;
             cout << "3. Go to the highway" << endl;
