@@ -8,6 +8,9 @@ using namespace std;
 class Game {
     private: //private variables
         int choice;
+        bool havewater = false;
+        bool havecar = false;
+        bool havecarkey = false;
     public:
         Game() {
             /*
@@ -224,26 +227,166 @@ class Game {
         
         void givewater(string towho) {
             if (towho == "dragon") {
-                cout << "I don\'t have water. I think I could look around for water." << endl;
-                cout << "1. Look for water" << endl;
+                if (havewater == false) {
+                    cout << "I don\'t have water. I think I could look around for water." << endl;
+                    cout << "1. Look for water" << endl;
+                    cout << "2. Just stop adventure" << endl;
+
+                    choice = getInput(2);
+
+                    if (choice == 1) {
+                        lookforwater();
+                    }
+                    else if (choice == 2) {
+                        stopAdventure();
+                    }
+                    else {
+                        error_message("Vaule \'choice\' should be 1~2 but it is not.");
+                    }
+                }
+                else if (havewater == true) {
+                    cout << "giving water to the dragon. Please wait..." << endl;
+                    delay(5);
+                    cout << "I\'m done giving some water. Let me have some water." << endl;
+                    delay(3);
+                    cout << "----------" << endl;
+                    cout << "I\'m done drinking some water. What should I do know?" << endl;
+                    cout << "1. Go home" << endl;
+                    cout << "2. Stop adventure" << endl;
+
+                    choice = getInput(2);
+
+                    if (choice == 1) {
+                        goHome();
+                    }
+                    else if (choice == 2) {
+                        stopAdventure();
+                    }
+                    else {
+                        error_message("Vaule \'choice\' should be 1~2 but it is not.");
+                    }
+                }
+            }
+        }
+
+        void goHome() {
+            cout << "Choose the way to go home." << endl;
+            cout << "1. Use the car" << endl;
+            cout << "2. Walk all way to home" << endl;
+            cout << "3. Stop adventure" << endl;
+
+            choice = getInput(3);
+
+            if (choice == 1) {
+                cout << "What way should I go?" << endl;
+                cout << "1. Go to interstate 2" << endl;
+                cout << "2. Go to interstate 10" << endl;
+                cout << "3. Go to interstate 90" << endl;
+                cout << "4. Go to interstate 94" << endl;
+
+                choice = getInput(4);
+
+                if (choice == 1 || choice == 2 || choice == 4) {
+                    cout << "Wrong Way. Maybe you can search some information on google maps." << endl;
+                    delay(7);
+                    cout << "After you are done, you can hit Enter and continue the adventure. " << endl;
+                    string temp;
+                    getline(cin, temp);
+                    cout << "Now that I know the way, maybe I can head home." << endl;
+                    delay(1);
+                }
+                cout << "Heading home..." << endl;
+                delay(3);
+                useCar();
+            }
+            else if (choice == 2) {
+                cout << "Walking all way home..." << endl;
+                delay(3);
+                cout << "My house is far away from here, so I can not walk all way home. Please try again." << endl;
+                cout << "----------" << endl;
+                cout << "[Error] You died!\nYou were walking all way home and you had no energy to walk all way home." << endl;
+                playAgain();
+            }
+        }
+
+        void useCar() {
+            if (havecar == true) {
+                if (havecarkey == true) {
+                    cout << "Heading home..." << endl;
+                    delay(3);
+                    cout << "I got to home sucessfully! This is the end of the Adventure!" << endl;
+                    delay(2);
+                    cout << "----------" << endl;
+                    cout << "[Info] You won the game! Thanks for playing this game." << endl;
+                    cout << "----------" << endl;
+                }
+                else {
+                    cout << "I do not have car key. I should find it." << endl;
+                    cout << "1. Look around" << endl;
+                    cout << "2. Just break the car" << endl;
+
+                    choice = getInput(2);
+
+                    if (choice == 1) {
+                        cout << "I found the car key!" << endl;
+                        havecarkey = true;
+                        useCar();
+                    }
+                    else if (choice == 2) {
+                        cout << "I can\'t break the car. " << endl;
+                        cout << "----------" << endl;
+                        cout << "[Error] You have no energy because you used energy breaking the car. Please start over." << endl;
+                        cout << "----------" << endl;
+                        playAgain();
+                    }
+                }
+            }
+            else if (havecar == false) {
+                cout << "Well, I should find the car." << endl;
+                cout << "1. Look for car" << endl;
                 cout << "2. Just stop adventure" << endl;
 
                 choice = getInput(2);
 
                 if (choice == 1) {
-                    lookforwater();
+                    cout << "I found a car." << endl;
+                    havecar = true;
+                    useCar();
                 }
                 else if (choice == 2) {
                     stopAdventure();
                 }
                 else {
-                    error_message("Vaule \'choice\' should be 1~2 but it is not.");
+                    error_message("Unknown error");
                 }
             }
         }
 
         void lookforwater() {
-            notDeveloped();
+            cout << "Where should I look?" << endl;
+            cout << "1. Inside the cactus" << endl;
+            cout << "2. Look for oasis" << endl;
+            cout << "3. Stop adventure" << endl;
+
+            choice = getInput(3);
+
+            if (choice == 1) {
+                cout << "There is a water inside the cactus. Now I can give some water to the dragon." << endl;
+                delay(1);
+                cout << "----\n[Info] Press Enter to continue.\n----" << endl;
+                string temp;
+                getline(cin, temp);
+                havewater = true;
+                givewater("dragon");
+            }
+            else if (choice == 2) {
+                cout << "I found some oasis around here!" << endl;
+                cout << "----\n[Info] Press Enter to continue\n----" << endl;
+                string temp;
+                getline(cin, temp);
+                havewater = true;
+                givewater("dragon");
+            }
         }
 
         void steal(string whatSteal) {
@@ -269,6 +412,7 @@ class Game {
         }
 
         void getCar() {
+            havecar = true;
             cout << "I found a car in the road but I have no key to take the car. Let\'s just find some dragon eggs." << endl;
             dragonEggs();
         }
@@ -307,7 +451,10 @@ class Game {
             }
         }
         void afterSearchdragon() {
-            cout << "After you find some informations, you can look for dragon eggs or do another task." << endl;
+            cout << "After you find some informations, you can hit Enter." << endl;
+            string temp;
+            getline(cin, temp);
+            cout << "Now that you find some informations, you can look for dragon eggs or do another task." << endl;
             cout << "1. look for dragon eggs" << endl;
             cout << "2. Go get a car" << endl;
             cout << "3. Go to the highway" << endl;
