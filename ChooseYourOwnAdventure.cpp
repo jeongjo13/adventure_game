@@ -311,9 +311,31 @@ class Game {
 
         void useCar() {
             if (havecar == true) {
-                cout << "Going home. Please wait." << endl;
-                delay(5);
-                notDeveloped();
+                if (havecarkey == true) {
+                    cout << "Heading home..." << endl;
+                    delay(3);
+                    notDeveloped();
+                }
+                else {
+                    cout << "I do not have car key. I should find it." << endl;
+                    cout << "1. Look around" << endl;
+                    cout << "2. Just break the car" << endl;
+
+                    choice = getInput(2);
+
+                    if (choice == 1) {
+                        cout << "I found the car key!" << endl;
+                        havecarkey = true;
+                        useCar();
+                    }
+                    else if (choice == 2) {
+                        cout << "I can\'t break the car. " << endl;
+                        cout << "----------" << endl;
+                        cout << "[Error] You have no energy because you used energy breaking the car. Please start over." << endl;
+                        cout << "----------" << endl;
+                        playAgain();
+                    }
+                }
             }
             else if (havecar == false) {
                 cout << "Well, I should find the car." << endl;
