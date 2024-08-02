@@ -359,7 +359,68 @@ class Game {
             cout << "----------\nNow we can start the adventure!" << endl;
             delay(2);
             cout << "----------" << endl;
-            notDeveloped();
+            cout << "I am going to go to the beach and have fun!" << endl;
+            cout << "1. use car to go to the beach" << endl;
+            cout << "2. walk all way to the beach" << endl;
+            cout << "3. stop adventure" << endl;
+
+            choice = getInput(3);
+
+            if (choice == 3) {
+                stopAdventure();
+            }
+            
+            cout << "Going to beach..." << endl;
+            delay(2);
+            cout << "I do not know the way to beach so I should find the way with Google Maps" << endl;
+            delay(1);
+            cout << "Finding way..." << endl;
+            delay(2);
+            if (choice == 1) {
+                cout << "I arrived at the beach, but there\'s no parking lot!" << endl;
+                cout << "1. Just go back home and walk all way to the beach" << endl;
+                cout << "2. Stop adventure" << endl;
+
+                choice = getInput(2);
+
+                if (choice == 1) {
+                    cout << "I\'m back home." << endl;
+                }
+                else {
+                    stopAdventure();
+                }
+            }
+            cout << "Walking to the beach..." << endl;
+            delay(1);
+            cout << "I arrived at the beach." << endl;
+            playatbeach();
+        }
+
+        void playatbeach() {
+            cout << "playing at the beach..." << endl;
+            delay(1);
+            cout << "----------\nThere\'s a problem! There is an earthquake!" << endl;
+            cout << "1. Run away from the beach (becauser the wave will be strong)" << endl;
+            cout << "2. Just stay at the beach (because there\'re no structures at the beach)" << endl;
+            cout << "3. Stop Adventure" << endl;
+
+            choice = getInput(3);
+
+            if (choice == 1) {
+                cout << "Running away..." << endl;
+                delay(1);
+                cout << "I ran away from the beach. " << endl;
+            }
+            else if (choice == 2) {
+                cout << "The wave was too strong, and I got drowned in the sea." << endl;
+                playAgain();
+            }
+            else if (choice == 3) {
+                stopAdventure();
+            }
+            else {
+                error_message("Error in 'playatbeach' function. Value \'choice\' should be 1~3 but it is not.");
+            }
         }
 
         void gotoTarget(string buywhat) {
