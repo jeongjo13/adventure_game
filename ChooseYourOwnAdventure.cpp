@@ -244,10 +244,7 @@ class Game {
                 }
                 else if (havewater == true) {
                     cout << "giving water to the dragon. Please wait..." << endl;
-                    for (int j = 0; j <= 100; j++) {
-                        cout << j + "% complete" << endl;
-                        delay(1);
-                    }
+                    delay(5);
                     cout << "I\'m done giving some water. Let me have some water." << endl;
                     delay(3);
                     cout << "----------" << endl;
@@ -258,7 +255,7 @@ class Game {
                     choice = getInput(2);
 
                     if (choice == 1) {
-                        notDeveloped();
+                        goHome();
                     }
                     else if (choice == 2) {
                         stopAdventure();
@@ -267,6 +264,46 @@ class Game {
                         error_message("Vaule \'choice\' should be 1~2 but it is not.");
                     }
                 }
+            }
+        }
+
+        void goHome() {
+            cout << "Choose the way to go home." << endl;
+            cout << "1. Use the car" << endl;
+            cout << "2. Walk all way to home" << endl;
+            cout << "3. Stop adventure" << endl;
+
+            choice = getInput(3);
+
+            if (choice == 1) {
+                cout << "What way should I go?" << endl;
+                cout << "1. Go to interstate 2" << endl;
+                cout << "2. Go to interstate 10" << endl;
+                cout << "3. Go to interstate 90" << endl;
+                cout << "4. Go to interstate 94" << endl;
+
+                choice = getInput(4);
+
+                if (choice == 1 || choice == 2 || choice == 4) {
+                    cout << "Wrong Way. Maybe you can search some information on google maps." << endl;
+                    delay(7);
+                    cout << "After you are done, you can hit Enter and continue the adventure. " << endl;
+                    string temp;
+                    getline(cin, temp);
+                    cout << "Now that I know the way, maybe I can head home." << endl;
+                    delay(1);
+                }
+                cout << "Heading home..." << endl;
+                delay(3);
+                notDeveloped();
+            }
+            else if (choice == 2) {
+                cout << "Walking all way home..." << endl;
+                delay(3);
+                cout << "My house is far away from here, so I can not walk all way home. Please try again." << endl;
+                cout << "----------" << endl;
+                cout << "[Error] You died!\nYou were walking all way home and you had no energy to walk all way home." << endl;
+                playAgain();
             }
         }
 
