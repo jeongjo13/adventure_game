@@ -11,6 +11,8 @@ class Game {
         bool havewater = false;
         bool havecar = false;
         bool havecarkey = false;
+        int money = 5;
+        bool havefood = false;
     public:
         Game() {
             /*
@@ -250,6 +252,7 @@ class Game {
                     cout << "I\'m done giving some water. Let me have some water." << endl;
                     delay(3);
                     cout << "----------" << endl;
+                    havewater = false;
                     cout << "I\'m done drinking some water. What should I do know?" << endl;
                     cout << "1. Go home" << endl;
                     cout << "2. Stop adventure" << endl;
@@ -312,7 +315,84 @@ class Game {
         void level2() {
             cout << "Let\'s start level 2!" << endl;
             delay(1);
+            money += 15; //give 15 dollars to the player (player should have 20 dollars after this command)
+            cout << "Find some water and foods to eat while having an adventure." << endl;
+            cout << "----------\n1. Look inside my house" << endl;
+            cout << "2. Buy some water and foods at the Target" << endl;
+            cout << "3. Stop adventure" << endl;
+            
+            choice = getInput(3);
+
+            if (choice == 1) {
+                cout << "There\'s no foods and water in my house! I should go to the Target and buy some of them." << endl;
+                cout << "----------\n1. Go to Target and buy some of them" << endl;
+                cout << "2. Stop adventure" << endl;
+
+                choice = getInput(2);
+
+                if (choice == 1) {
+                    gotoTarget("foods");
+                    gotoTarget("water");
+                    start_second_adventure();
+                }
+                else if (choice == 2) {
+                    stopAdventure();
+                }
+                else {
+                    error_message("\'choice\' should be 1~2.");
+                }
+            }
+            else if (choice == 2) {
+                gotoTarget("foods");
+                gotoTarget("water");
+                start_second_adventure();
+            }
+            else if (choice == 3) {
+                stopAdventure();
+            }
+            else {
+                error_message("Unknown Error");
+            }
+        }
+
+        void start_second_adventure() {
+            cout << "----------\nNow we can start the adventure!" << endl;
+            delay(2);
+            cout << "----------" << endl;
             notDeveloped();
+        }
+
+        void gotoTarget(string buywhat) {
+            if (buywhat == "foods") {
+                cout << "I have " << money << " dollars now. The foods are sold for 15 dollars." << endl;
+                cout << "1. buy it" << endl;
+                cout << "2. don\'t buy it" << endl;
+
+                choice = getInput(2);
+
+                if (choice == 1) {
+                    money -= 15;
+                    cout << "I bought some foods. Now I have " << money << " dollars. " << endl;
+                }
+                else if (choice == 2) {
+                    cout << "I\'m not buying foods." << endl;
+                }
+            }
+            else if (buywhat == "water") {
+                cout << "I have " << money << " dollars now. One bottle of water is sold for 3 dollars." << endl;
+                cout << "1. buy it" << endl;
+                cout << "2. don\'t buy it" << endl;
+
+                choice = getInput(2);
+
+                if (choice == 1) {
+                    money -= 3;
+                    cout << "I bought some water. Now I have " << money << " dollars. " << endl;
+                }
+                else if (choice == 2) {
+                    cout << "I\'m not buying water." << endl;
+                }
+            }
         }
 
         void useCar() {
