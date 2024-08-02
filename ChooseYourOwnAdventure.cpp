@@ -9,6 +9,8 @@ class Game {
     private: //private variables
         int choice;
         bool havewater = false;
+        bool havecar = false;
+        bool havecarkey = false;
     public:
         Game() {
             /*
@@ -295,7 +297,7 @@ class Game {
                 }
                 cout << "Heading home..." << endl;
                 delay(3);
-                notDeveloped();
+                useCar();
             }
             else if (choice == 2) {
                 cout << "Walking all way home..." << endl;
@@ -304,6 +306,33 @@ class Game {
                 cout << "----------" << endl;
                 cout << "[Error] You died!\nYou were walking all way home and you had no energy to walk all way home." << endl;
                 playAgain();
+            }
+        }
+
+        void useCar() {
+            if (havecar == true) {
+                cout << "Going home. Please wait." << endl;
+                delay(5);
+                notDeveloped();
+            }
+            else if (havecar == false) {
+                cout << "Well, I should find the car." << endl;
+                cout << "1. Look for car" << endl;
+                cout << "2. Just stop adventure" << endl;
+
+                choice = getInput(2);
+
+                if (choice == 1) {
+                    cout << "I found a car." << endl;
+                    havecar = true;
+                    useCar();
+                }
+                else if (choice == 2) {
+                    stopAdventure();
+                }
+                else {
+                    error_message("Unknown error");
+                }
             }
         }
 
@@ -357,6 +386,7 @@ class Game {
         }
 
         void getCar() {
+            havecar = true;
             cout << "I found a car in the road but I have no key to take the car. Let\'s just find some dragon eggs." << endl;
             dragonEggs();
         }
