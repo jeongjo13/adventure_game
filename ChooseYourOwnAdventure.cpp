@@ -8,6 +8,7 @@ using namespace std;
 class Game {
     private: //private variables
         int choice;
+        bool havewater = false;
     public:
         Game() {
             /*
@@ -224,26 +225,54 @@ class Game {
         
         void givewater(string towho) {
             if (towho == "dragon") {
-                cout << "I don\'t have water. I think I could look around for water." << endl;
-                cout << "1. Look for water" << endl;
-                cout << "2. Just stop adventure" << endl;
+                if (havewater == false) {
+                    cout << "I don\'t have water. I think I could look around for water." << endl;
+                    cout << "1. Look for water" << endl;
+                    cout << "2. Just stop adventure" << endl;
 
-                choice = getInput(2);
+                    choice = getInput(2);
 
-                if (choice == 1) {
-                    lookforwater();
+                    if (choice == 1) {
+                        lookforwater();
+                    }
+                    else if (choice == 2) {
+                        stopAdventure();
+                    }
+                    else {
+                        error_message("Vaule \'choice\' should be 1~2 but it is not.");
+                    }
                 }
-                else if (choice == 2) {
-                    stopAdventure();
-                }
-                else {
-                    error_message("Vaule \'choice\' should be 1~2 but it is not.");
+                else if (havewater == true) {
+                    notDeveloped();
                 }
             }
         }
 
         void lookforwater() {
-            notDeveloped();
+            cout << "Where should I look?" << endl;
+            cout << "1. Inside the cactus" << endl;
+            cout << "2. Look for oasis" << endl;
+            cout << "3. Stop adventure" << endl;
+
+            choice = getInput(3);
+
+            if (choice == 1) {
+                cout << "There is a water inside the cactus. Now I can give some water to the dragon." << endl;
+                delay(1);
+                cout << "----\n[Info] Press Enter to continue.\n----" << endl;
+                string temp;
+                getline(cin, temp);
+                havewater = true;
+                givewater("dragon");
+            }
+            else if (choice == 2) {
+                cout << "I found some oasis around here!" << endl;
+                cout << "----\n[Info] Press Enter to continue\n----" << endl;
+                string temp;
+                getline(cin, temp);
+                havewater = true;
+                givewater("dragon");
+            }
         }
 
         void steal(string whatSteal) {
