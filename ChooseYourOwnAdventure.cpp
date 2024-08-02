@@ -86,6 +86,17 @@ class Game {
             cout << "This fuction is not developed yet. Please try again later." << endl;
             exit(1);
         }
+        
+        void stopAdventure() {
+            cout << "Stop Adventure" << endl;
+            exit(0);
+        }
+        
+        void error_message(string error_reason) {
+            cout << "Something went wrong. If this error keeps happening, you can include the information below and make an issue at https://github.com/jeongjo13/adventure_game/issues/new." << endl;
+            cout << error_reason << endl;
+        }
+        
         void dragonEggs() {
             cout << "I found some dragon eggs! " << endl;
             cout << "1. Look for dragons" << endl;
@@ -100,8 +111,7 @@ class Game {
                 steal("dragonegg");
             }
             else if (choice == 3) {
-                cout << "Stop adventure" << endl;
-                exit(0);
+                stopAdventure();
             }
         }
 
@@ -112,11 +122,103 @@ class Game {
             choice = getInput(2);
 
             if (choice == 1) {
-                notDeveloped();
+                lookOtherPlaces();
             }
             else if (choice == 2) {
                 cout << "Stop Adventure" << endl;
                 exit(0);
+            }
+        }
+        
+        void lookOtherPlaces() {
+            cout << "I found the dragon! What should I do now?" << endl;
+            cout << "1. give some food to the dragon" << endl;
+            cout << "2. say \'hello\' to the dragon" << endl;
+            cout << "3. give some water to the dragon" << endl;
+            cout << "4. stop adventure" << endl;
+            
+            choice = getInput(4);
+            if (choice == 1) {
+                givefood("dragon");
+            }
+            else if (choice == 2) {
+                sayhello("dragon");
+            }
+            else if (choice == 3) {
+                givewater("dragon");
+            }
+            else if (choice == 4) {
+                stopAdventure();
+            }
+            else {
+                error_message("Value \'choice\' should be 1~4 but it is not.");
+            }
+        }
+        
+        void givefood(string towho) {
+            if (towho == "dragon") {
+                cout << "I have not food for now. Maybe I can give it some water or do something else." << endl;
+                cout << "1. Give dragon some water" << endl;
+                cout << "2. Say \'Hello\' to it" << endl;
+                cout << "3. stop adventure" << endl;
+                
+                choice = getInput(3);
+                
+                if (choice == 1) {
+                    givewater("dragon");
+                }
+                
+                else if (choice == 2) {
+                    sayhello("dragon");
+                }
+                else if (choice == 3) {
+                    stopAdventure();
+                }
+                else {
+                    error_message("Value \'choice\' should be 1~3 but it is not.");
+                }
+            }
+        }
+        
+        void sayhello(string towho) {
+            if (towho == "dragon") {
+                cout << towho + " does not know English. Try with another language." << endl;
+                cout << "1. Korean" << endl;
+                cout << "2. Chinese" << endl;
+                
+                choice = getInput(2);
+                
+                if (choice == 1) {
+                    cout << "Dragon does not know \"안녕하세요\" (Hello in Korean) so maybe we can try Chinese. Press Enter key to continue" << endl;
+                    string temp;
+                    getline(cin, temp);
+                }
+                if (choice == 1 || choice == 2) {
+                    cout << "Dragon does understand Nǐ hǎo (Hello in Chinese). That\'s good!" << endl;
+                    cout << "1. Give some water to the dragon" << endl;
+                    cout << "2. Stop Adventure" << endl;
+                    
+                    choice = getInput(2);
+                    
+                    if (choice == 1) {
+                        givewater("dragon");
+                    }
+                    else if (choice == 2) {
+                        stopAdventure();
+                    }
+                    else {
+                        error_message("Vaule \'choice\' should be 1~2 but it is not.");
+                    }
+                }
+                else {
+                    error_message("Vaule \'choice\' should be 1~2 but it is not.");
+                }
+            }
+        }
+        
+        void givewater(string towho) {
+            if (towho == "dragon") {
+                notDeveloped();
             }
         }
 
@@ -135,8 +237,7 @@ class Game {
                     playAgain();
                 }
                 else if (choice == 2) {
-                    cout << "stop adventure" << endl;
-                    exit(0);
+                    stopAdventure();
                 }
             }
         }
